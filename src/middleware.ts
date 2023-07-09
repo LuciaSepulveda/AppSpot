@@ -2,6 +2,8 @@ import { getToken } from "next-auth/jwt"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
+const PUBLIC_FILE = /\.(.*)$/
+
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.JWT_SECRET })
 
@@ -11,7 +13,7 @@ export async function middleware(req: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/static") ||
     pathname.startsWith("/api") ||
-    pathname.startsWith("/favicon.ico") ||
+    PUBLIC_FILE.test(pathname) ||
     token
   ) {
     return NextResponse.next()

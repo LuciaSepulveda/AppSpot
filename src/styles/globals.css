@@ -1,9 +1,9 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -104,4 +104,42 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.swiper {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.swiper_container {
+  height: 52rem;
+  position: relative;
+  height: 320px;
+}
+
+.swiper-slide {
+  width: 300px !important;
+  height: 300px !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.swiper-pagination {
+  position: relative !important;
+  width: 100% !important;
+  bottom: 1rem;
+  margin: auto;
+  margin-top: 30px;
+  height: 100% !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  /* background: var(--primary-background); */
 }
