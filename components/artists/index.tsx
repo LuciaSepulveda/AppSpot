@@ -2,7 +2,12 @@ import { Box, Container, Flex, Text } from "@chakra-ui/react"
 import { Artist } from "../../types"
 import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { EffectCoverflow, Pagination, Mousewheel } from "swiper/modules"
+import {
+  EffectCoverflow,
+  Pagination,
+  Mousewheel,
+  Autoplay,
+} from "swiper/modules"
 
 import "swiper/css"
 import "swiper/css/effect-coverflow"
@@ -49,10 +54,14 @@ const Artists = ({ artists }: Props) => {
             mousewheel={true}
             direction="horizontal"
             pagination={{ el: ".swiper-pagination", clickable: true }}
-            modules={[EffectCoverflow, Pagination, Mousewheel]}
+            modules={[EffectCoverflow, Pagination, Mousewheel, Autoplay]}
             className="swiper_container"
             initialSlide={0}
             loopedSlides={3}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
           >
             {colors.length !== 0 &&
               artists.map((artist, index) => {
@@ -78,7 +87,7 @@ const Artists = ({ artists }: Props) => {
                       </Text>
                       <Box w="180px" h="180px" position="relative">
                         <Image
-                          src={artist.images[1].url}
+                          src={artist.images ? artist.images[1].url : ""}
                           alt={artist.name}
                           fill={true}
                           sizes="cover"
