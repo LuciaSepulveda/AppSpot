@@ -3,46 +3,85 @@ import { Track } from "../../types"
 import Image from "next/image"
 import { useState } from "react"
 import { StarIcon } from "@chakra-ui/icons"
+import { Tilt } from "react-tilt"
 
 interface Props {
   tracks: Track[]
 }
 
+const defaultOptions = {
+  reverse: false, // reverse the tilt direction
+  max: 35, // max tilt rotation (degrees)
+  perspective: 1000, // Transform perspective, the lower the more extreme the tilt gets.
+  scale: 1.5, // 2 = 200%, 1.5 = 150%, etc..
+  speed: 1000, // Speed of the enter/exit transition
+  transition: true, // Set a transition on enter/exit.
+  axis: null, // What axis should be disabled. Can be X or Y.
+  reset: true, // If the tilt effect has to be reset on exit.
+  easing: "cubic-bezier(.03,.98,.52,.99)", // Easing on enter/exit.
+}
+
 const Tracks = ({ tracks }: Props) => {
-  //const [hoverSelection, setHoverSelection] = useState<number | undefined>()
+  const [hoverSelection, setHoverSelection] = useState<number | undefined>()
 
   return (
-    <Container maxW="7xl" overflow="scroll" py={8} my={4}>
+    <Container
+      maxW="7xl"
+      py={8}
+      my={4}
+      minH="100vh"
+      display="flex"
+      alignContent="center"
+    >
       <Flex w="full" flexDir="column" justifyContent="center">
-        <Text fontSize="3xl" fontWeight="bold" m="auto" mb={8}>
+        <Text fontSize="3xl" fontWeight="bold" mx="auto" mb={8}>
           Tus canciones favoritas
         </Text>
         <Flex w="full" gap={4} flexWrap="wrap" justify="center">
           {tracks.map((track, index) => (
-            <Flex
-              justify="flex-start"
-              flexDir="column"
-              minWidth={160}
-              maxW={160}
+            <Tilt
+              options={defaultOptions}
               key={track.id}
-              background="blackAlpha.300"
-              borderRadius="sm"
-              p={4}
-              h={60}
-              //   onMouseEnter={() => setHoverSelection(index)}
-              //   onMouseLeave={() => setHoverSelection(undefined)}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                minWidth: "10rem",
+                maxWidth: "02rem",
+                background:
+                  hoverSelection === index
+                    ? "rgba(0,0,0, 0.9)"
+                    : "rgba(0, 0, 0, 0.3)",
+                zIndex: hoverSelection === index ? "10" : "0",
+                transformStyle: "preserve-3d",
+                borderRadius: "4px",
+                padding: "1rem",
+                height: "15rem",
+                justifyContent: "flex-start",
+              }}
+              onMouseEnter={() => setHoverSelection(index)}
+              onMouseLeave={() => setHoverSelection(undefined)}
             >
-              <Box bg="red" w={32} minH={32} h={32} position="relative">
+              <Box w={32} minH={32} h={32} transform="translateZ(20px)">
                 <Image
                   fill={true}
-                  src={track.album.images[0].url}
+                  src={track.album.images[1].url}
                   alt="album"
                 />
               </Box>
-              <Text py={1} fontWeight="semibold" textAlign="left">
+              <Text
+                py={1}
+                fontWeight="semibold"
+                textAlign="left"
+                transform="translateZ(20px)"
+              >
                 {track.artists[0].name}
               </Text>
-              <Box position="relative" overflow="hidden" whiteSpace="nowrap">
+              <Box
+                position="relative"
+                overflow="hidden"
+                whiteSpace="nowrap"
+                transform="translateZ(20px)"
+              >
                 <Text
                   textAlign="left"
                   overflow="hidden"
@@ -53,11 +92,11 @@ const Tracks = ({ tracks }: Props) => {
                   {track.name}
                 </Text>
               </Box>
-              <Flex align="center" gap={1}>
+              <Flex transform="translateZ(20px)" align="center" gap={1}>
                 <StarIcon boxSize={3} />
                 <Text>{track.popularity / 10}</Text>
               </Flex>
-            </Flex>
+            </Tilt>
           ))}
         </Flex>
       </Flex>

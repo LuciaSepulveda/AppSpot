@@ -33,7 +33,7 @@ const Artists = ({ artists }: Props) => {
   }, [artists, colors.length])
 
   return (
-    <Container maxW="7xl" overflow="scroll" mt={8}>
+    <Container maxW="7xl" my={24}>
       <Flex w="full" flexDir="column" justifyContent="center">
         <Text fontSize="3xl" fontWeight="bold" m="auto" mb={8}>
           Tus artistas favoritos
