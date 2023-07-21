@@ -13,6 +13,8 @@
     "@chakra-ui/react": "^2.7.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@react-three/drei": "^9.78.1",
+    "@react-three/fiber": "^8.13.4",
     "@types/node": "20.4.1",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -26,7 +28,9 @@
     "react-tilt": "^1.0.2",
     "spotify-web-api-node": "^5.0.2",
     "swiper": "^10.0.4",
-    "typescript": "5.1.6"
+    "three": "^0.154.0",
+    "typescript": "5.1.6",
+    "valtio": "^1.10.7"
   },
   "devDependencies": {
     "@types/spotify-web-api-node": "^5.0.7"

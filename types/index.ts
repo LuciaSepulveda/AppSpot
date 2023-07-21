@@ -11,6 +11,10 @@ export interface Artist {
   images?: Image[]
   uri: string
   id: string
+  popularity: number
+  followers: {
+    total: number
+  }
 }
 
 export interface Album {
