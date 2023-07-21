@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Text } from "@chakra-ui/react"
+import { Box, Container, Flex, Text, useColorModeValue } from "@chakra-ui/react"
 import { Track } from "../../types"
 import Image from "next/image"
 import { useState } from "react"
@@ -23,6 +23,14 @@ const defaultOptions = {
 
 const Tracks = ({ tracks }: Props) => {
   const [hoverSelection, setHoverSelection] = useState<number | undefined>()
+  const bg = useColorModeValue(
+    "rgba(206, 206, 206, 0.9)",
+    "rgba(0, 0, 0, 0.9)"
+  )
+  const bgHover = useColorModeValue(
+    "rgba(206, 206, 206, 0.3)",
+    "rgba(0, 0, 0,0.3)"
+  )
 
   return (
     <Container
@@ -47,10 +55,7 @@ const Tracks = ({ tracks }: Props) => {
                 flexDirection: "column",
                 minWidth: "10rem",
                 maxWidth: "02rem",
-                background:
-                  hoverSelection === index
-                    ? "rgba(0,0,0, 0.9)"
-                    : "rgba(0, 0, 0, 0.3)",
+                background: hoverSelection === index ? bg : bgHover,
                 zIndex: hoverSelection === index ? "10" : "0",
                 transformStyle: "preserve-3d",
                 borderRadius: "4px",

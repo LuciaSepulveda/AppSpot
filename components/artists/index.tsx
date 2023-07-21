@@ -1,4 +1,4 @@
-import { Container, Flex, Text } from "@chakra-ui/react"
+import { Container, Flex, Text, useColorModeValue } from "@chakra-ui/react"
 import { Artist } from "../../types"
 import { Suspense, useEffect, useRef, useState } from "react"
 import * as THREE from "three"
@@ -24,6 +24,7 @@ interface Props {
 const Artists = ({ artists }: Props) => {
   const [colors, setColors] = useState<number[]>([])
   const [urls, setUrls] = useState<string[]>([])
+  const colorMode = useColorModeValue("rgb(27, 33, 46)", "rgb(206, 206, 206)")
 
   useEffect(() => {
     let aux: string[] = []
@@ -61,7 +62,7 @@ const Artists = ({ artists }: Props) => {
         {urls.map((_, i) => (
           <Line
             key={i}
-            color="black"
+            color={colorMode}
             points={[
               new THREE.Vector3(0, -0.5, 0),
               new THREE.Vector3(0, 0.5, 0),
@@ -217,7 +218,7 @@ const Artists = ({ artists }: Props) => {
                 font="/Inter_Bold.json"
                 lineHeight={1}
                 letterSpacing={0.06}
-                fontSize={0.22}
+                fontSize={0.20}
                 onPointerOver={overWord}
                 onPointerOut={outWord}
                 ref={refWord}

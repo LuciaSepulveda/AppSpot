@@ -1,9 +1,22 @@
-import { Box, Button, Container, Flex, Text } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Flex,
+  Text,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react"
 import type { Session } from "next-auth"
 import Image from "next/image"
 import { signOut } from "next-auth/react"
+import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 
 const Header = ({ user }: Session["user"]) => {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const color = useColorModeValue("rgb(27, 33, 46)", "rgb(206, 206, 206)")
+
   return (
     <header>
       <Container maxW="7xl">
@@ -18,14 +31,21 @@ const Header = ({ user }: Session["user"]) => {
               w="40px"
               borderRadius="full"
             >
-              <Image
-                src={user?.image}
-                fill={true}
-                alt={"Image of user"}
-              />
+              <Image src={user?.image} fill={true} alt={"Image of user"} />
             </Box>
           </Flex>
-          <Button onClick={() => signOut()}>Cerrar sesión</Button>
+          <Flex>
+            <Center
+              as="button"
+              onClick={toggleColorMode}
+              aria-hidden="true"
+              mr={4}
+            >
+              {colorMode === "light" && <MoonIcon _hover={{ color: color }} />}
+              {colorMode !== "light" && <SunIcon _hover={{ color: color }} />}
+            </Center>
+            <Button onClick={() => signOut()}>Cerrar sesión</Button>
+          </Flex>
         </Flex>
       </Container>
     </header>
