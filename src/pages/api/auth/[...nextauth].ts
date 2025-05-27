@@ -25,7 +25,8 @@ export const authOptions = {
     SpotifyProvider({
       clientId: process.env.NEXT_CLIENT_ID || "",
       clientSecret: process.env.NEXT_SECRET_CLIENT || "",
-      authorization: LOGIN_URL,
+      authorization:
+        "https://accounts.spotify.com/authorize?scope=user-read-email,user-read-private",
     }),
   ],
   secret: process.env.JWT_SECRET,
