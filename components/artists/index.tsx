@@ -68,6 +68,7 @@ const Artists = ({ artists }: Props) => {
               new THREE.Vector3(0, 0.5, 0),
             ]}
             position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]}
+            derivatives={[]}
           />
         ))}
       </group>
