@@ -68,6 +68,7 @@ const Artists = ({ artists }: Props) => {
               new THREE.Vector3(0, 0.5, 0),
             ]}
             position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]}
+            derivatives={undefined}
           />
         ))}
       </group>
@@ -218,7 +219,7 @@ const Artists = ({ artists }: Props) => {
                 font="/Inter_Bold.json"
                 lineHeight={1}
                 letterSpacing={0.06}
-                fontSize={0.20}
+                fontSize={0.2}
                 onPointerOver={overWord}
                 onPointerOut={outWord}
                 ref={refWord}
